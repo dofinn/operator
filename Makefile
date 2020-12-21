@@ -7,7 +7,7 @@ BUILD_TIMESTAMP := $(shell date -u +"%Y-%m-%dT%H:%M:%S%Z")
 VCS_BRANCH := $(strip $(shell git rev-parse --abbrev-ref HEAD))
 VCS_REF := $(strip $(shell [ -d .git ] && git rev-parse --short HEAD))
 CONTAINER_REPO ?= quay.io/observatorium/observatorium-operator
-CONTAINER_ENGINE ?= docker
+CONTAINER_ENGINE=$(shell command -v podman 2>/dev/null || command -v docker 2>/dev/null)
 CONTAINER_TAG ?= latest
 
 
